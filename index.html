@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Private preview</title>
+<link rel="icon" href="data:,">
+<style>
+html,body{height:100%}
+body{margin:0;background:#F4EEE4;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1E1A17;display:flex;align-items:center;justify-content:center}
+form{display:flex;flex-direction:column;gap:12px;width:min(320px,calc(100% - 48px))}
+label{font-size:14px;font-weight:600;color:#4E443C}
+input{height:48px;border-radius:12px;border:1px solid #D9CDBB;background:#FFFFFF;padding:0 14px;font-size:16px;outline:none}
+input:focus{border-color:#1F6F6B;box-shadow:0 0 0 4px rgba(31,111,107,.16)}
+button{height:48px;border-radius:12px;border:0;background:#1E1A17;color:#F4EEE4;font-size:15px;font-weight:700;cursor:pointer}
+.err{min-height:20px;font-size:13px;color:#8A1C1C}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.shake{animation:shake .3s ease-in-out 2}
+</style>
+</head>
+<body>
+<form id="f" autocomplete="off">
+  <label for="pw">Password</label>
+  <input id="pw" type="password" autofocus>
+  <button type="submit">Continue</button>
+  <div class="err" id="err" role="alert"></div>
+</form>
+<script>
+function h(s){var x=5381;for(var i=0;i<s.length;i++){x=(Math.imul(x,33)^s.charCodeAt(i))>>>0;}return x;}
+var GOAL='1952045729';
+try{if(localStorage.getItem('cc-gate')===GOAL)location.replace('login.html');}catch(e){}
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();var v=document.getElementById('pw').value;
+  if(String(h('cow-creek:'+v))===GOAL){try{localStorage.setItem('cc-gate',GOAL);}catch(_){}location.href='login.html';}
+  else{var f=document.getElementById('f');f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake');document.getElementById('err').textContent='That password isn’t right.';}});
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in · Cow Creek</title>
+<link rel="icon" href="assets/seal.webp">
+<script>try{if(localStorage.getItem('cc-gate')!=='1952045729')location.replace('index.html')}catch(e){location.replace('index.html')}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141a2e;font-family:Figtree,system-ui,sans-serif;color:#1E1A17;overflow:hidden}
+button,input{font-family:inherit}
+:root{--spring:linear(0,0.06 2%,0.22 5%,0.52 10%,0.82 16%,1 22%,1.07 28%,1.08 33%,1.05 41%,1.015 52%,0.997 64%,1);--soft:linear(0,0.1 3%,0.38 9%,0.72 17%,0.94 26%,1.03 35%,1.04 42%,1.02 55%,1)}
+@keyframes up{0%{scale:.6;opacity:0}55%{scale:1.04;opacity:1}100%{scale:1;opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.scenes{position:fixed;inset:-5%;width:110%;height:110%;transition:transform 1s var(--soft)}
+.scenes img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card{animation:up 1.4s var(--soft) both;transition:opacity .5s,scale .6s var(--soft),translate .6s var(--soft)}
+body.leaving .card{opacity:0;scale:.94;translate:0 18px}
+.glass{background:rgba(255,253,249,.9);backdrop-filter:blur(16px) saturate(1.1);-webkit-backdrop-filter:blur(16px) saturate(1.1);border:1px solid rgba(255,253,249,.7)}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld span{font-size:13px;font-weight:700;color:#4E443C}
+.fld input{height:52px;border-radius:14px;border:1px solid #D9CDBB;background:#FFFFFF;padding:0 16px;font-size:16px;color:#1E1A17;outline:none;transition:box-shadow .2s,border-color .2s}
+.fld input:focus{border-color:#1F6F6B;box-shadow:0 0 0 4px rgba(31,111,107,.18)}
+.seg{position:relative;display:flex;padding:4px;border-radius:999px;background:#EDE4D6}
+.segpill{position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:44px;border-radius:999px;background:#1E1A17;transition:transform .7s var(--spring)}
+.segbtn{position:relative;z-index:1;flex:1;height:44px;border:0;background:transparent;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;transition:color .35s}
+.go{transition:translate .5s var(--spring),box-shadow .3s}
+.go:hover{translate:0 -3px;box-shadow:0 14px 30px rgba(122,31,43,.35)}
+.foot{animation:fade 1s 1s both}
+a{color:#F4EEE4}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+
+
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-dc-template" id="dc-template">
+<div onMouseMove="{{ move }}" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; position: relative">
+  <div class="scenes" ref="{{ r0 }}" aria-hidden="true"><img src="assets/lookout_night.jpg" alt=""></div>
+
+  <main class="card glass" style="position: relative; width: 100%; max-width: 440px; border-radius: 30px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 30px 80px rgba(0,0,0,.35)">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+      <img src="assets/seal.webp" alt="Cow Creek Band of Umpqua Tribe of Indians seal" style="width: 96px; height: 96px; object-fit: contain">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 500; font-size: 26px; line-height: 1.15">Cow Creek Band of Umpqua Tribe of Indians</h1>
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #5E5249">{{ portalName }}</span>
+      </div>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Choose a portal">
+      <span class="segpill" style="transform: translateX({{ pillX }})"></span>
+      <sc-for list="{{ portals }}" as="p" hint-placeholder-count="2">
+        <button role="radio" aria-checked="{{ p.on }}" onClick="{{ p.pick }}" class="segbtn" style="color: {{ p.fg }}">{{ p.label }}</button>
+      </sc-for>
+    </div>
+    <label class="fld"><span>{{ userLabel }}</span><input value="{{ user }}" onChange="{{ onUser }}" autocomplete="username" placeholder="{{ userHint }}"></label>
+    <label class="fld"><span>Password</span><input type="password" value="{{ pass }}" onChange="{{ onPass }}" autocomplete="current-password" placeholder="••••••••"></label>
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px">
+      <button onClick="{{ toggleRemember }}" aria-pressed="{{ remember }}" style="display: flex; align-items: center; gap: 8px; border: 0; background: transparent; padding: 0; cursor: pointer; font-size: 13px; font-weight: 600; color: #3B332D; min-height: 40px"><span style="width: 18px; height: 18px; border-radius: 5px; background: {{ rememberBg }}; color: #FFFFFF; font-size: 12px; display: flex; align-items: center; justify-content: center">{{ rememberMark }}</span>Keep me signed in</button>
+      <span style="color: #7A1F2B; font-weight: 700">Forgot password?</span>
+    </div>
+    <a href="{{ target }}" data-exit="1" class="go" style="height: 56px; border-radius: 16px; background: #7A1F2B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 17px; font-weight: 700">Sign in</a>
+    <span style="font-size: 12px; color: #5E5249; text-align: center">{{ helpLine }}</span>
+  </main>
+
+  <div class="foot" style="position: relative; margin-top: 22px; display: flex; gap: 18px; font-size: 13px; font-weight: 600; color: #E8E2F2; flex-wrap: wrap; justify-content: center">
+    <span>Phone prototypes:</span><a href="MemberMobile.dc.html">Member Portal</a><a href="GovMobile.dc.html">Staff in the field</a>
+  </div>
+</div>
+</script>
+<script>window.DC_LINKS = {"Combined.dc.html": "gov.html", "MemberDesktop.dc.html": "member.html", "MemberMobile.dc.html": "member-mobile.html", "GovMobile.dc.html": "gov-mobile.html", "Login.dc.html": "login.html", "Main.dc.html": "#", "Inbox.dc.html": "#", "Member.dc.html": "#", "Spaces.dc.html": "#", "Pipeline.dc.html": "#", "MemberApp.dc.html": "#"};</script>
+<script src="js/react.production.min.js"></script>
+<script src="js/react-dom.production.min.js"></script>
+<script src="js/dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { portal: 'gov', user: '', pass: '', remember: true }; this.r0 = (el) => { this.bgEl = el; }; }
+  componentWillUnmount(){ cancelAnimationFrame(this._raf); }
+  renderVals() {
+    const s = this.state; const gov = s.portal === 'gov';
+    const vw = typeof window !== 'undefined' ? window.innerWidth : 1440, vh = typeof window !== 'undefined' ? window.innerHeight : 900;
+    return {
+      r0: this.r0,
+      move: (e) => { const nx = e.clientX / vw - 0.5, ny = e.clientY / vh - 0.5; cancelAnimationFrame(this._raf); this._raf = requestAnimationFrame(() => { if (this.bgEl) this.bgEl.style.transform = 'translate3d(' + (-nx * 28).toFixed(1) + 'px,' + (-ny * 17).toFixed(1) + 'px,0)'; }); },
+      portalName: gov ? 'Government Portal' : 'Member Portal',
+      portals: [['gov', 'Government Portal'], ['member', 'Member Portal']].map(([k, label]) => ({ label, on: s.portal === k ? 'true' : 'false', fg: s.portal === k ? '#F4EEE4' : '#1E1A17', pick: () => this.setState({ portal: k }) })),
+      pillX: gov ? '0%' : '100%',
+      userLabel: gov ? 'Work email' : 'Tribal ID or email', userHint: gov ? 'name@cowcreek-nsn.gov' : '00001936',
+      user: s.user, onUser: (e) => this.setState({ user: e.target.value }), pass: s.pass, onPass: (e) => this.setState({ pass: e.target.value }),
+      remember: s.remember ? 'true' : 'false', rememberBg: s.remember ? '#1F6F6B' : '#D9CDBB', rememberMark: s.remember ? '✓' : '', toggleRemember: () => this.setState({ remember: !s.remember }),
+      target: gov ? 'gov.html' : 'member.html',
+      helpLine: gov ? 'For tribal government staff. Access is set by your department admin.' : 'New to the Member Portal? Enrollment can send you a login link.'
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

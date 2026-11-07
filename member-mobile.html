@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Member Portal (phone) · Cow Creek</title>
+<link rel="icon" href="assets/seal.webp">
+<script>try{if(localStorage.getItem('cc-gate')!=='1952045729')location.replace('index.html')}catch(e){location.replace('index.html')}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Figtree,system-ui,sans-serif;color:#1E1A17}
+button,input{font-family:inherit}
+:root{--spring:linear(0,0.06 2%,0.22 5%,0.52 10%,0.82 16%,1 22%,1.07 28%,1.08 33%,1.05 41%,1.015 52%,0.997 64%,1);--soft:linear(0,0.1 3%,0.38 9%,0.72 17%,0.94 26%,1.03 35%,1.04 42%,1.02 55%,1)}
+@keyframes drift{0%{translate:0 0}50%{translate:-22px -8px}100%{translate:0 0}}
+@keyframes sceneIn{from{scale:1.18;opacity:0}to{scale:1;opacity:1}}
+@keyframes up{0%{scale:.55;opacity:0}55%{scale:1.05;opacity:1}78%{scale:.985}100%{scale:1;opacity:1}}
+@keyframes pop{from{scale:.4;opacity:0}to{scale:1;opacity:1}}
+@keyframes breathe{50%{scale:1.05}}
+@keyframes fill{from{width:0}to{width:100%}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{translate:0 16px;opacity:0}to{translate:0 0;opacity:1}}
+@keyframes check{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+@keyframes wiggle{0%{rotate:0deg}25%{rotate:-1.4deg}50%{rotate:1deg}75%{rotate:-.4deg}100%{rotate:0deg}}
+.phone{width:390px;height:844px;position:relative;overflow:hidden;background:#F4EEE4}
+.scenes{position:absolute;top:-4%;left:-30%;height:108%;width:160%;animation:sceneIn 1.8s var(--soft) both,drift 24s 2s ease-in-out infinite}
+.scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease}
+.scene.on{opacity:1}
+.veil{position:absolute;inset:0;opacity:0;transition:opacity 2s,background 1.3s}
+.veil.on{opacity:1}
+.glass{background:rgba(255,253,249,.9);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);border:1px solid rgba(255,253,249,.7)}
+.flyseal{position:absolute;z-index:20;left:50%;top:38%;width:190px;height:190px;transform:translate(-50%,-50%);transition:left 1.8s var(--soft),top 1.8s var(--soft),width 1.8s var(--soft),height 1.8s var(--soft),transform 1.8s var(--soft)}
+.flyseal.fly{left:22px;top:20px;width:40px;height:40px;transform:translate(0,0)}
+.flyseal img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(30,26,23,.35));animation:pop 1.4s var(--soft) both,breathe 3.2s 1.4s ease-in-out infinite}
+.flyseal.fly img{animation:none;filter:none}
+.loadbox{position:absolute;z-index:19;left:0;right:0;top:calc(38% + 118px);display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity .6s;animation:fade 1s .5s both}
+.loadbox.out{opacity:0}
+.track{width:140px;height:4px;border-radius:2px;background:rgba(255,253,249,.55);overflow:hidden}
+.track span{display:block;height:100%;background:#7A1F2B;animation:fill 2.8s .2s cubic-bezier(.4,0,.2,1) both}
+.seal.wait{opacity:0}
+.body.pre .up{animation:none;opacity:0}
+.up{animation:up 1.5s var(--soft) both}
+.s0{animation-delay:.4s}.s1{animation-delay:.58s}.s2{animation-delay:.76s}.s3{animation-delay:.94s}.s4{animation-delay:1.12s}
+.pane{animation:rise .7s var(--soft) both}
+.wig{transition:translate .5s var(--spring)}
+.wig:active{translate:0 2px;scale:.98}
+.wig:hover{animation:wiggle .7s ease-out}
+.carousel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;padding:2px 16px 10px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.pc{scroll-snap-align:start;flex:0 0 236px}
+.tabpill{position:absolute;top:6px;left:6px;height:52px;width:calc((100% - 12px) / 4);border-radius:18px;background:#1E1A17;transition:transform .7s var(--spring)}
+.sscrim{position:absolute;inset:0;z-index:30;background:rgba(30,26,23,.38);opacity:0;pointer-events:none;transition:opacity .4s}
+.sscrim.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:8px;right:8px;bottom:8px;z-index:31;background:#FFFDF9;border-radius:30px;box-shadow:0 -10px 50px rgba(30,26,23,.3);transform:translateY(calc(100% + 40px));transition:transform .8s var(--spring);max-height:86%;overflow:auto}
+.sheet.on{transform:none}
+.ck path{stroke-dasharray:30;animation:check .6s .2s ease-out both}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld span{font-size:13px;font-weight:600;color:#4E443C}
+.fld input{height:50px;border-radius:14px;border:1px solid #D9CDBB;background:#FFFFFF;padding:0 14px;font-size:16px;outline:none}
+.fld input:focus{border-color:#1F6F6B;box-shadow:0 0 0 4px rgba(31,111,107,.18)}
+.flip{perspective:1200px}
+.flipin{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 1s var(--spring)}
+.flip.back .flipin{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;overflow:hidden}
+.face.rear{transform:rotateY(180deg)}
+.qr{display:grid;grid-template-columns:repeat(21,1fr);width:180px;height:180px;background:#FFFFFF;padding:10px;border-radius:14px;box-sizing:content-box}
+.qr span{display:block}
+.toast{position:absolute;left:16px;right:16px;bottom:96px;z-index:40;transform:translateY(160%);opacity:0;transition:transform .6s var(--spring),opacity .3s}
+.toast.show{transform:none;opacity:1}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+
+<style>
+html,body{height:100%}
+body{margin:0;background:#1A1714!important;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#frame{width:390px;height:844px;border-radius:44px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.5);transform-origin:center center;flex-shrink:0}
+.back-link{position:fixed;top:14px;left:16px;color:#CDBFAB;font:600 13px Figtree,system-ui,sans-serif;text-decoration:none;z-index:9}
+@media (max-width:500px){#frame{border-radius:0;box-shadow:none}.back-link{display:none}}
+</style>
+<script>function fit(){var f=document.getElementById('frame');if(!f)return;var s=Math.min(window.innerWidth/390,(window.innerHeight-(window.innerWidth<=500?0:32))/844);if(window.innerWidth>500)s=Math.min(1,s);f.style.transform='scale('+s+')';}window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);</script>
+</head>
+<body>
+<a class="back-link" href="login.html">← Back to sign in</a><div id="frame"><div id="app"></div></div>
+<script type="text/x-dc-template" id="dc-template">
+<div class="phone">
+  <div class="scenes" aria-hidden="true">
+    <img class="{{ scLkNight }}" src="assets/lookout_night.jpg" alt="">
+    <img class="{{ scLkMorning }}" src="assets/lookout_morning.jpg" alt="">
+    <img class="{{ scLkDay }}" src="assets/lookout_day.jpg" alt="">
+    <img class="{{ scLkSunset }}" src="assets/lookout_sunset.jpg" alt="">
+    <img class="{{ scRvNight }}" src="assets/river_night.jpg" alt="">
+    <img class="{{ scRvMorning }}" src="assets/river_morning.jpg" alt="">
+    <img class="{{ scRvDay }}" src="assets/river_day.jpg" alt="">
+    <img class="{{ scRvSunset }}" src="assets/river_sunset.jpg" alt="">
+    <img class="{{ scVlNight }}" src="assets/valley_night.jpg" alt="">
+    <img class="{{ scVlMorning }}" src="assets/valley_morning.jpg" alt="">
+    <img class="{{ scVlDay }}" src="assets/valley_day.jpg" alt="">
+    <img class="{{ scVlSunset }}" src="assets/valley_sunset.jpg" alt="">
+  </div>
+  <div class="{{ veilCls }}" aria-hidden="true" style="background: {{ veilBg }}"></div>
+  <sc-if value="{{ introOn }}" hint-placeholder-val="{{ false }}">
+    <div class="{{ flyCls }}" aria-hidden="true"><img src="assets/seal.webp" alt=""></div>
+    <div class="{{ loadCls }}" role="status"><span style="font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: {{ loadFg }}; text-shadow: {{ loadShadow }}">Loading…</span><div class="track"><span></span></div></div>
+  </sc-if>
+
+  <div class="{{ bodyCls }}" style="position: absolute; inset: 0; bottom: 0; overflow-y: auto; padding-bottom: 110px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 6px">
+      <div class="glass up" style="display: flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px; border-radius: 999px">
+        <img class="{{ sealCls }}" src="assets/seal.webp" alt="Cow Creek seal" style="width: 40px; height: 40px; object-fit: contain">
+        <span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700; line-height: 1.2">Cow Creek Band</span><span style="font-size: 10px; color: #5E5249; letter-spacing: .06em; text-transform: uppercase; font-weight: 700">Member Portal</span></span>
+      </div>
+      <button onClick="{{ replay }}" aria-label="Replay opening animation" class="up s0" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #7A1F2B; color: #F4EEE4; font-weight: 700; font-size: 14px; cursor: pointer">TK</button>
+    </div>
+
+    <sc-if value="{{ tHome }}" hint-placeholder-val="{{ true }}">
+      <div class="pane" style="display: flex; flex-direction: column; gap: 16px; padding-top: 6px">
+        <div class="glass up s1" style="margin: 0 16px; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #5E5249; font-variant-numeric: tabular-nums">{{ clockLabel }}</span>
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.1">Welcome home, Travis</span>
+          <span style="font-size: 14px; color: #5E5249">Tribal ID 00001936</span>
+        </div>
+
+        <div class="up s2" style="padding: 0 16px">
+          <sc-if value="{{ offerPending }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ openOffer }}" class="wig" style="width: 100%; text-align: left; border: 0; border-radius: 26px; padding: 20px; background: #1F6F6B; color: #FFFFFF; display: flex; flex-direction: column; gap: 12px; cursor: pointer; box-shadow: 0 16px 40px rgba(31,111,107,.35)">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .85">Housing · action needed</span>
+              <span style="font-family: Fraunces, Georgia, serif; font-size: 26px; line-height: 1.15">A home has been offered to you</span>
+              <span style="display: flex; justify-content: space-between; align-items: center; font-size: 14px"><span>Lot 21 · 3 bedrooms · open 14 days</span><span style="font-weight: 700">Review →</span></span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ offerAccepted }}" hint-placeholder-val="{{ false }}">
+            <div class="glass" style="border-radius: 26px; padding: 18px; display: flex; gap: 14px; align-items: center">
+              <svg class="ck" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#E3EFEE"></circle><path d="m7 12.5 3.2 3.2L17 9" stroke="#1F6F6B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">You accepted Lot 21</span><span style="font-size: 13px; color: #5E5249">Housing will contact you about move-in.</span></span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ offerDeclined }}" hint-placeholder-val="{{ false }}">
+            <div class="glass" style="border-radius: 26px; padding: 18px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 16px; font-weight: 700">You declined Lot 21</span><span style="font-size: 13px; color: #5E5249">You stay on the waitlist in the same place.</span>
+            </div>
+          </sc-if>
+        </div>
+
+        <div class="up s3" style="display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px">
+            <span style="font-size: 16px; font-weight: 700; text-shadow: 0 1px 12px rgba(255,236,220,.9)">Open for you</span>
+            <span style="font-size: 13px; font-weight: 600; text-shadow: 0 1px 12px rgba(255,236,220,.9)">Swipe →</span>
+          </div>
+          <div class="carousel">
+            <sc-for list="{{ progs }}" as="p" hint-placeholder-count="3">
+              <button onClick="{{ p.open }}" class="pc glass wig" style="border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 18px; min-height: 160px; text-align: left; cursor: pointer; color: #1E1A17">
+                <span style="display: flex; justify-content: space-between; width: 100%"><span style="font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: {{ p.tint }}">{{ p.dept }}</span><span style="font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: {{ p.sbg }}; color: {{ p.sfg }}">{{ p.state }}</span></span>
+                <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; line-height: 1.15">{{ p.name }}</span>
+                <span style="font-size: 13px; font-weight: 700; margin-top: auto; color: {{ p.tint }}">{{ p.cta }} →</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div class="up s4" style="padding: 0 16px">
+          <button onClick="{{ openHid }}" class="glass wig" style="width: 100%; border-radius: 22px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; text-align: left; cursor: pointer; min-height: 68px; margin-bottom: 12px">
+            <span style="width: 44px; height: 44px; border-radius: 12px; background: #8A5A12; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"></path><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2"></path></svg></span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700; color: #1E1A17">My Hunter ID</span><span style="font-size: 13px; color: #5E5249">Show this to an officer in the field</span></span>
+            <span aria-hidden="true" style="font-size: 18px; color: #8A5A12">›</span>
+          </button>
+          <button onClick="{{ toRequests }}" class="glass wig" style="width: 100%; border-radius: 22px; padding: 16px; display: flex; justify-content: space-between; align-items: center; text-align: left; cursor: pointer; min-height: 68px">
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700; color: #1E1A17">{{ reqTitle }}</span><span style="font-size: 13px; color: #5E5249">{{ reqSub }}</span></span>
+            <span style="font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: #F6E7C8; color: #6B4A0E">In review</span>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ tPrograms }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 10px 16px; display: flex; flex-direction: column; gap: 10px">
+        <span class="glass" style="align-self: flex-start; font-family: Fraunces, Georgia, serif; font-size: 28px; padding: 8px 16px; border-radius: 16px">Programs</span>
+        <sc-for list="{{ progs }}" as="p" hint-placeholder-count="4">
+          <button onClick="{{ p.open }}" class="glass wig" style="border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 14px; text-align: left; cursor: pointer; min-height: 76px">
+            <span style="width: 44px; height: 44px; border-radius: 14px; background: {{ p.tint }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0">{{ p.ini }}</span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700; color: #1E1A17">{{ p.name }}</span><span style="font-size: 12px; color: #5E5249">{{ p.dept }}</span></span>
+            <span style="font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: {{ p.sbg }}; color: {{ p.sfg }}">{{ p.state }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ tRequests }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 10px 16px; display: flex; flex-direction: column; gap: 12px">
+        <div class="glass" style="border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 24px">{{ reqTitle }}</span>
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+            <div style="display: flex; gap: 14px">
+              <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 16px; height: 16px; border-radius: 50%; background: {{ st.dot }}; border: 2px solid {{ st.ring }}; box-sizing: border-box"></span><span style="width: 2px; flex: 1; min-height: 30px; background: #E3D9C9"></span></div>
+              <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px"><span style="font-size: 15px; font-weight: 700; color: {{ st.fg }}">{{ st.t }}</span><span style="font-size: 13px; color: #5E5249">{{ st.s }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ tProfile }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 10px 16px; display: flex; flex-direction: column; gap: 12px">
+        <div class="glass" style="border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 26px">Travis King</span>
+          <sc-for list="{{ profileRows }}" as="r" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5E5249">{{ r.k }}</span><span style="font-size: 15px; font-weight: 600">{{ r.v }}</span></div></sc-for>
+          <button onClick="{{ openChange }}" class="wig" style="height: 50px; border-radius: 14px; border: 0; background: #7A1F2B; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer">Request a change</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <nav aria-label="Member portal" class="glass up s4" style="position: absolute; left: 16px; right: 16px; bottom: 14px; height: 64px; border-radius: 24px; z-index: 10; display: flex; padding: 6px; box-sizing: border-box">
+    <span class="tabpill" style="transform: translateX({{ tabX }}%)"></span>
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+      <button onClick="{{ t.pick }}" aria-current="{{ t.cur }}" style="position: relative; z-index: 1; flex: 1; height: 52px; border: 0; background: transparent; color: {{ t.fg }}; font-size: 13px; font-weight: 700; cursor: pointer; transition: color .35s">{{ t.label }}</button>
+    </sc-for>
+  </nav>
+
+  <div class="{{ scrimCls }}" onClick="{{ closeSheet }}"></div>
+  <section class="{{ sheetCls }}" role="dialog" aria-label="{{ sheetLabel }}">
+    <div style="display: flex; justify-content: center; padding-top: 10px"><span style="width: 40px; height: 5px; border-radius: 3px; background: #D9CDBB"></span></div>
+    <sc-if value="{{ sOffer }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="height: 150px; border-radius: 20px; overflow: hidden; position: relative; background: #E9DFD0"><img src="assets/lookout_sunset.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%"><span style="position: absolute; left: 12px; bottom: 12px; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255,253,249,.9)">[Home photo]</span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Fraunces, Georgia, serif; font-size: 26px">Lot 21 · Myrtle Loop</span><span style="font-size: 14px; color: #5E5249">3 bedrooms · inspected and ready · offer open 14 days</span></div>
+        <sc-if value="{{ offerStep1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; gap: 10px">
+            <button onClick="{{ askDecline }}" style="flex: 1; height: 54px; border-radius: 16px; border: 1px solid #D9CDBB; background: #FFFDF9; font-size: 16px; font-weight: 700; cursor: pointer">Decline</button>
+            <button onClick="{{ askAccept }}" class="wig" style="flex: 2; height: 54px; border-radius: 16px; border: 0; background: #7A1F2B; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer">Accept this home</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ offerConfirm }}" hint-placeholder-val="{{ false }}">
+          <div class="pane" style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 18px; background: {{ cBg }}">
+            <span style="font-size: 16px; font-weight: 700">{{ cTitle }}</span>
+            <span style="font-size: 14px; color: #3B332D">{{ cBody }}</span>
+            <div style="display: flex; gap: 10px">
+              <button onClick="{{ cBack }}" style="flex: 1; height: 50px; border-radius: 14px; border: 1px solid #D9CDBB; background: #FFFDF9; font-size: 15px; font-weight: 700; cursor: pointer">Go back</button>
+              <button onClick="{{ cGo }}" class="wig" style="flex: 2; height: 50px; border-radius: 14px; border: 0; background: {{ cBtn }}; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer">{{ cCta }}</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sProgram }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: {{ SP.tint }}">{{ SP.dept }}</span>
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 28px; line-height: 1.1">{{ SP.name }}</span>
+        <span style="font-size: 15px; line-height: 1.5; color: #3B332D">{{ SP.desc }}</span>
+        <button onClick="{{ SP.act }}" disabled="{{ SP.done }}" class="wig" style="height: 54px; border-radius: 16px; border: 0; background: {{ SP.btn }}; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer">{{ SP.cta }}</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sHid }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 12px 20px 26px; display: flex; flex-direction: column; gap: 12px; align-items: center">
+        <button onClick="{{ flipHid }}" aria-label="{{ hidAria }}" class="{{ hidCls }}" style="width: 100%; height: 380px; border: 0; padding: 0; background: transparent; cursor: pointer">
+          <span class="flipin" style="display: block">
+            <span class="face" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #8A5A12; color: #FFFFFF; padding: 18px; box-sizing: border-box">
+              <span style="display: flex; align-items: center; gap: 10px"><img src="assets/seal.webp" alt="" style="width: 40px; height: 40px; object-fit: contain"><span style="display: flex; flex-direction: column; text-align: left"><span style="font-family: Fraunces, Georgia, serif; font-size: 22px; line-height: 1.05">Travis King</span><span style="font-size: 12px; opacity: .9">Tribal ID 00001936 · 2026 season</span></span></span>
+              <span class="qr" role="img" aria-label="QR code for Hunter ID 00001936"><sc-for list="{{ qrCells }}" as="q" hint-placeholder-count="21"><span style="background: {{ q }}"></span></sc-for></span>
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85">Hunting &amp; Fishing license</span>
+            </span>
+            <span class="face rear" style="display: flex; flex-direction: column; gap: 10px; background: #FFFDF9; color: #1E1A17; padding: 20px; box-sizing: border-box; text-align: left; border: 1px solid #E3D9C9">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8A5A12">Active programs</span>
+              <span style="display: flex; justify-content: space-between; padding: 12px; border-radius: 12px; background: #F4EEE4"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Elk Season Draw</span><span style="font-size: 12px; color: #5E5249">Tag 1 of 2 used</span></span><span style="font-size: 12px; font-weight: 700; color: #174F4C; align-self: center">Valid</span></span>
+              <span style="display: flex; justify-content: space-between; padding: 12px; border-radius: 12px; background: #F4EEE4"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Coastal Fishing</span><span style="font-size: 12px; color: #5E5249">Through season end</span></span><span style="font-size: 12px; font-weight: 700; color: #174F4C; align-self: center">Valid</span></span>
+            </span>
+          </span>
+        </button>
+        <span style="font-size: 13px; color: #5E5249">Tap the card to flip it · turn up your screen brightness</span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sChange }}" hint-placeholder-val="{{ false }}">
+      <div class="pane" style="padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 26px">Update your mailing address</span>
+        <span style="font-size: 14px; color: #5E5249">Enrollment staff review every change before it shows on your profile.</span>
+        <label class="fld"><span>New mailing address</span><input value="{{ addr }}" onChange="{{ onAddr }}" placeholder="Street, city, ZIP"></label>
+        <button onClick="{{ sendChange }}" disabled="{{ addrEmpty }}" class="wig" style="height: 54px; border-radius: 16px; border: 0; background: {{ addrBtn }}; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer">Send for review</button>
+      </div>
+    </sc-if>
+  </section>
+
+  <div class="{{ toastCls }}" role="status" style="background: #1E1A17; color: #F4EEE4; padding: 14px 16px; border-radius: 16px; font-size: 14px; font-weight: 600">{{ toast }}</div>
+</div>
+</script>
+<script>window.DC_LINKS = {"Combined.dc.html": "gov.html", "MemberDesktop.dc.html": "member.html", "MemberMobile.dc.html": "member-mobile.html", "GovMobile.dc.html": "gov-mobile.html", "Login.dc.html": "login.html", "Main.dc.html": "#", "Inbox.dc.html": "#", "Member.dc.html": "#", "Spaces.dc.html": "#", "Pipeline.dc.html": "#", "MemberApp.dc.html": "#"};</script>
+<script src="js/react.production.min.js"></script>
+<script src="js/react-dom.production.min.js"></script>
+<script src="js/dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { scene: 'lk', sweep: 0, now: 0, intro: 'load', veil: false, tab: 'Home', sheet: null, sOpen: false, offer: 'pending', confirm: null, applied: [], addr: '', req: 'Mailing address change', toast: '', showToast: false }; }
+  componentDidMount(){ this.start(); }
+  componentWillUnmount(){ [this._a, this._b, this._c, this._d, this._t, this._s].forEach(clearTimeout); cancelAnimationFrame(this._sw); clearTimeout(this._rot); }
+  start(){ [this._a, this._b, this._c, this._d].forEach(clearTimeout); cancelAnimationFrame(this._sw); this.stopRot(); this.setState({ scene: 'lk', sweep: 0, intro: 'load', veil: false, tab: 'Home', sheet: null, sOpen: false });
+    this._a = setTimeout(() => this.setState({ intro: 'fly' }), 3000); this._b = setTimeout(() => this.setState({ intro: 'done' }), 4900); this._c = setTimeout(() => this.setState({ veil: true }), 6200); this._d = setTimeout(() => this.runSweep(), 5400); }
+  say(m){ clearTimeout(this._t); this.setState({ toast: m, showToast: true }); this._t = setTimeout(() => this.setState({ showToast: false }), 2600); }
+  open(kind, extra){ clearTimeout(this._s); this.setState({ sheet: kind, sOpen: false, confirm: null, ...(extra || {}) }); requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ sOpen: true }))); }
+  close(){ this.setState({ sOpen: false }); clearTimeout(this._s); this._s = setTimeout(() => { if (!this.state.sOpen) this.setState({ sheet: null, confirm: null }); }, 500); }
+  nowMin(){ const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+  runSweep(){ cancelAnimationFrame(this._sw); const target = this.nowMin(); const t0 = performance.now(), dur = 4200;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur); const e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+      if (k < 1) { this.setState({ sweep: Math.round(target * e) }); this._sw = requestAnimationFrame(step); } else { this.setState({ sweep: null, now: target }); this.startRot(15000); } };
+    this._sw = requestAnimationFrame(step); }
+  sceneClasses(ph){ const cur = this.state.scene || 'lk'; const out = {};
+    ['lk', 'rv', 'vl'].forEach(sc => ['night', 'morning', 'day', 'sunset'].forEach(p => { out['sc' + sc[0].toUpperCase() + sc.slice(1) + p[0].toUpperCase() + p.slice(1)] = 'scene' + (sc === cur && p === ph ? ' on' : ''); })); return out; }
+  startRot(delay){ clearTimeout(this._rot); this._rotPaused = false; this._rotDue = Date.now() + delay;
+    this._rot = setTimeout(() => { const order = ['lk', 'rv', 'vl']; const nx = order[(order.indexOf(this.state.scene || 'lk') + 1) % 3]; this.setState({ scene: nx }); this.startRot(15000); }, delay); }
+  resumeOrStart(){ if (this._rotPaused) this.resumeRot(); else if (!this._rotDue) this.startRot(15000); }
+  stopRot(){ clearTimeout(this._rot); this._rotPaused = false; this._rotDue = 0; }
+  pauseRot(){ if (this._rotPaused || !this._rotDue) return; clearTimeout(this._rot); this._rotLeft = Math.max(800, this._rotDue - Date.now()); this._rotPaused = true; }
+  resumeRot(){ if (!this._rotPaused) return; this.startRot(this._rotLeft); }
+  renderVals() {
+    const s = this.state;
+    const T = { Education: '#3E5C8A', 'Hunting & Fishing': '#8A5A12', Culture: '#5B6B2E', 'Veteran Services': '#2E2A26' };
+    const list = [
+      { id: 'he', dept: 'Education', name: 'Higher Education Support', desc: 'Help with tuition and fees at an accredited college. You have $1,200 left this year.', enrolled: true },
+      { id: 'elk', dept: 'Hunting & Fishing', name: 'Elk Season Draw', desc: 'Apply for an elk tag. Harvest reports are due within 10 days of a harvest.', enrolled: true },
+      { id: 'tk', dept: 'Culture', name: 'Takelma Language Class', desc: 'Weekly evening class for all ages. Open to every enrolled member and their household.' },
+      { id: 'vd', dept: 'Veteran Services', name: 'Veterans Day Honor Event', desc: 'A gathering to honor our veterans, with a Color Guard presentation and shared meal.' }
+    ];
+    const progs = list.map(p => { const applied = s.applied.includes(p.id); const state = p.enrolled ? 'Enrolled' : applied ? 'Applied' : 'Open';
+      return { ...p, tint: T[p.dept], ini: p.name.split(' ').map(x => x[0]).join('').slice(0, 2), state, sbg: state === 'Open' ? '#E3EFEE' : state === 'Applied' ? '#F6E7C8' : '#EDE6DC', sfg: state === 'Open' ? '#174F4C' : state === 'Applied' ? '#6B4A0E' : '#2E2A26', cta: state === 'Open' ? 'Apply' : 'View', open: () => this.open('program', { prog: p.id }) }; });
+    const sp = progs.find(p => p.id === s.prog) || progs[0];
+    const tabsL = ['Home', 'Programs', 'Requests', 'Profile']; const ti = tabsL.indexOf(s.tab);
+    const conf = s.confirm;
+    const showMin = s.sweep !== null && s.sweep !== undefined ? s.sweep : (s.now || this.nowMin());
+    const ph = showMin < 480 || showMin >= 1200 ? 'night' : showMin < 630 ? 'morning' : showMin < 1020 ? 'day' : 'sunset';
+    const fmtT = (m) => { const h = Math.floor(m / 60), mm = m % 60; return ((h % 12) || 12) + ':' + String(mm).padStart(2, '0') + (h < 12 ? ' AM' : ' PM'); };
+    const tod = { ...this.sceneClasses(ph),
+      veilBg: ph === 'night' ? 'rgba(18,22,44,.22)' : 'rgba(244,238,228,.25)', loadFg: ph === 'night' ? '#F4EEE4' : '#1E1A17', loadShadow: ph === 'night' ? '0 1px 12px rgba(0,0,0,.6)' : '0 1px 12px rgba(255,236,220,.95)',
+      clockLabel: new Date().toLocaleDateString('en-US', { weekday: 'long' }) + ' · ' + fmtT(showMin) };
+    const qrCells = (() => { const N = 21, out = []; let seed = 1936; const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+      const finder = (r, c) => { const box = (r0, c0) => r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7 ? ((r === r0 || r === r0 + 6 || c === c0 || c === c0 + 6) || (r >= r0 + 2 && r <= r0 + 4 && c >= c0 + 2 && c <= c0 + 4) ? 1 : 0) : -1;
+        for (const [a, b] of [[0, 0], [0, 14], [14, 0]]) { const v = box(a, b); if (v !== -1) return v; } return -1; };
+      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const f = finder(r, c); out.push((f === -1 ? rnd() > .52 : f === 1) ? '#1E1A17' : '#FFFFFF'); } return out; })();
+    return { ...tod, qrCells, sHid: s.sheet === 'hid', openHid: () => this.open('hid', { hidBack: false }), flipHid: () => this.setState({ hidBack: !this.state.hidBack }), hidCls: 'flip' + (s.hidBack ? ' back' : ''), hidAria: s.hidBack ? 'Hunter ID, back side. Tap to flip.' : 'Hunter ID, front side with QR code. Tap to flip.',
+      introOn: s.intro !== 'done', flyCls: 'flyseal' + (s.intro === 'fly' ? ' fly' : ''), loadCls: 'loadbox' + (s.intro === 'fly' ? ' out' : ''), sealCls: 'seal' + (s.intro !== 'done' ? ' wait' : ''),
+      bodyCls: 'body' + (s.intro === 'load' ? ' pre' : ''), veilCls: 'veil' + (s.veil ? ' on' : ''), replay: () => this.start(),
+      tHome: s.tab === 'Home', tPrograms: s.tab === 'Programs', tRequests: s.tab === 'Requests', tProfile: s.tab === 'Profile',
+      tabs: tabsL.map(t => ({ label: t, cur: s.tab === t ? 'page' : 'false', fg: s.tab === t ? '#F4EEE4' : '#1E1A17', pick: () => this.setState({ tab: t }) })), tabX: ti * 100,
+      offerPending: s.offer === 'pending', offerAccepted: s.offer === 'accepted', offerDeclined: s.offer === 'declined',
+      progs, reqTitle: s.req, reqSub: 'Sent · Enrollment is reviewing it', toRequests: () => this.setState({ tab: 'Requests' }),
+      steps: [{ t: 'Sent', s: 'You submitted the change', dot: '#1F6F6B', ring: '#1F6F6B', fg: '#1E1A17' }, { t: 'In review', s: 'Enrollment staff are checking it', dot: '#FFFDF9', ring: '#C98A1A', fg: '#1E1A17' }, { t: 'Updated', s: 'Your profile shows the change', dot: '#FFFDF9', ring: '#D9CDBB', fg: '#5E5249' }],
+      profileRows: [{ k: 'Tribal ID', v: '00001936' }, { k: 'Mailing address', v: '64361 Kutch Cliffs, West Fermin' }, { k: 'Email', v: 'TravisKingTest@proton.me' }, { k: 'Phone', v: '(113) 669-8676' }],
+      openOffer: () => this.open('offer'), openChange: () => this.open('change', { addr: '' }),
+      scrimCls: 'sscrim' + (s.sOpen ? ' on' : ''), sheetCls: 'sheet' + (s.sOpen ? ' on' : ''), closeSheet: () => this.close(), sheetLabel: s.sheet === 'hid' ? 'My Hunter ID' : s.sheet === 'offer' ? 'Home offer' : s.sheet === 'change' ? 'Request a change' : 'Program',
+      sOffer: s.sheet === 'offer', sProgram: s.sheet === 'program', sChange: s.sheet === 'change',
+      offerStep1: !conf, offerConfirm: !!conf,
+      askAccept: () => this.setState({ confirm: 'accept' }), askDecline: () => this.setState({ confirm: 'decline' }), cBack: () => this.setState({ confirm: null }),
+      cTitle: conf === 'accept' ? 'Accept Lot 21?' : 'Decline Lot 21?', cBody: conf === 'accept' ? 'Housing staff will confirm your move-in date. Other offers will close.' : 'You keep your place on the waitlist. The home goes to the next member.',
+      cBg: conf === 'accept' ? '#E3EFEE' : '#F6E7C8', cBtn: conf === 'accept' ? '#1F6F6B' : '#8A5A12', cCta: conf === 'accept' ? 'Yes, accept' : 'Yes, decline',
+      cGo: () => { const acc = this.state.confirm === 'accept'; this.close(); setTimeout(() => this.setState({ offer: acc ? 'accepted' : 'declined' }), 350); this.say(acc ? 'Accepted · Housing has been notified' : 'Declined · you stay on the waitlist'); },
+      SP: { ...sp, done: sp.state !== 'Open', btn: sp.state === 'Open' ? '#7A1F2B' : '#B9AFA4', cta: sp.state === 'Open' ? 'Apply now' : sp.state === 'Applied' ? 'Application sent' : 'You’re enrolled',
+        act: () => { if (sp.state !== 'Open') return; this.setState({ applied: this.state.applied.concat(sp.id) }); this.close(); this.say('Application sent for ' + sp.name); } },
+      addr: s.addr, onAddr: (e) => this.setState({ addr: e.target.value }), addrEmpty: !s.addr.trim(), addrBtn: s.addr.trim() ? '#7A1F2B' : '#B9AFA4',
+      sendChange: () => { if (!this.state.addr.trim()) return; this.close(); this.setState({ req: 'Mailing address change' }); this.say('Sent for review · you’ll get an email when it’s done'); },
+      toast: s.toast, toastCls: 'toast' + (s.showToast ? ' show' : '')
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
